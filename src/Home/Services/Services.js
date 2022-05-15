@@ -2,6 +2,7 @@ import React from 'react';
 import cavity from '../../assets/images/cavity.png';
 import fluoride from '../../assets/images/fluoride.png';
 import whitening from '../../assets/images/whitening.png';
+import treatment from '../../assets/images/treatment.png';
 
 const Services = () => {
     return (
@@ -38,11 +39,26 @@ const Services = () => {
                 </div>
 
             </div>
+
+            <div>
+                <div class="hero min-h-screen mt-10">
+                    <div class="hero-content flex-col lg:flex-row md:flex-row">
+                        <img width='458px' height='576px' src={treatment} />
+                        <div className=' pl-16'>
+                            <h1 class="text-5xl font-bold pl-16">Exceptional Dental Care, On Your Terms</h1>
+                            <p class="py-6 pl-16">It's a special branch of dentistry where doctor deals with smile. Total smile will change depending of DSD software and try on pt mouth. It will change total smile of a patient. Specially actor ,actress , fasion model, news presenter , cabin crews and vvip did this treatment for looking handsome. Now a days many peoples are doing this treatment due to demand good smile. Doctors are here already treat more then 2000 in last 10 years.</p>
+                            <button class="btn btn-primary ml-16 text-white">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default Services;
+
+
 
 
 
