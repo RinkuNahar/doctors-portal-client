@@ -7,11 +7,13 @@ import Navbar from './Shared/Navbar/Navbar';
 import Reviews from './Pages/Reviews/Reviews'
 import Contact from './Pages/Contact/Contact';
 import Login from './Firebase/Login/Login';
+import Footer from './Shared/Footer/Footer';
 
 function App() {
   return (
     <div >
      <Navbar></Navbar>
+
      <Routes>
        <Route path='/home' element={<Home></Home>}></Route>
        <Route path='/' element={<Home></Home>}></Route>
@@ -22,6 +24,8 @@ function App() {
 
         <Route path='/login' element={<Login></Login>}></Route>
      </Routes>
+
+    <Footer></Footer>
     </div>
   );
 }

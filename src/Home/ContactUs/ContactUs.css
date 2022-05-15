@@ -1,0 +1,41 @@
+.contact-headline{
+    color: #19D3AE;
+    margin-top: 100px;
+}
+
+@media (max-width:540px){
+    .contact-container{
+        margin-left: 70px;
+    }
+   .contact-input{
+       width: 500px;
+   }
+}
+
+@media (max-width:768px) and (min-width:540px){
+    .contact-container{
+        margin-left: 70px;
+    }
+   .contact-input{
+       width: 700px;
+   }
+
+   .contact-home{
+       width: 100%;
+   }
+}
+
+@media (max-width:1024px) and (min-width:768px){
+    .contact-input{
+        width: 800px;
+    }
+
+    .contact-container{
+        margin-left: 100px;
+       
+    }
+
+    .contact-home{
+        width: 100%;
+    }
+}
