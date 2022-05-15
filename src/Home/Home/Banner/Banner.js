@@ -1,7 +1,8 @@
 import React from 'react';
 import chair from '../../../../src/assets/images/chair.png';
 import './Banner.css';
-import bg from '../../../../src/assets/images/bg.png'
+import bg from '../../../../src/assets/images/bg.png';
+
 const Banner = () => {
     return (
         <div style={{ 
