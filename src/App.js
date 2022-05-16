@@ -9,25 +9,32 @@ import Contact from './Pages/Contact/Contact';
 import Login from './Firebase/Login/Login';
 import Footer from './Shared/Footer/Footer';
 import SignUp from './Firebase/SignUp/SignUp';
+import RequireAuth from './Shared/RequireAuth/RequireAuth';
 
 function App() {
   return (
     <div >
-     <Navbar></Navbar>
+      <Navbar></Navbar>
 
-     <Routes>
-       <Route path='/home' element={<Home></Home>}></Route>
-       <Route path='/' element={<Home></Home>}></Route>
+      <Routes>
+        <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/' element={<Home></Home>}></Route>
         <Route path='/about' element={<About></About>}></Route>
-        <Route path='/appointment' element={<Appointment></Appointment>}></Route>
+
+        <Route path='/appointment' element={
+          <RequireAuth>
+            <Appointment></Appointment>
+          </RequireAuth>
+        }></Route>
+
         <Route path='/reviews' element={<Reviews></Reviews>}></Route>
         <Route path='/contact' element={<Contact></Contact>}></Route>
 
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
-     </Routes>
+      </Routes>
 
-    <Footer></Footer>
+      <Footer></Footer>
     </div>
   );
 }

@@ -9,7 +9,7 @@ const Navbar = () => {
     const [user] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
-      };
+    };
 
     return (
         <div className="navbar bg-base-100">
