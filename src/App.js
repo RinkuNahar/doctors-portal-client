@@ -10,6 +10,8 @@ import Login from './Firebase/Login/Login';
 import Footer from './Shared/Footer/Footer';
 import SignUp from './Firebase/SignUp/SignUp';
 import RequireAuth from './Shared/RequireAuth/RequireAuth';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
       </Routes>
 
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../../Shared/Loading/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useUpdateProfile } from 'react-firebase-hooks/auth';
+
+
 
 const SignUp = () => {
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [updateProfile, updating, pError] = useUpdateProfile(auth);
+    const [email, setEmail] = useState('');
+    const [sendEmailVerification] = useSendEmailVerification(
+        auth
+    );
+    const navigate = useNavigate();
+    const location = useLocation();
 
     let errorMessage;
     let from = location.state?.from?.pathname || "/";
-    const navigate = useNavigate();
-    const location = useLocation();
 
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const onSubmit = async data => {
         console.log(data);
@@ -112,6 +117,15 @@ const SignUp = () => {
                         <input className='btn w-full max-w-xs' type="submit" value='Sign Up' />
 
                     </form>
+                    <button
+                        onClick={async () => {
+                            await sendEmailVerification();
+                            alert('Sent email');
+                        }}
+                    >
+                        Verify email
+                    </button>
+
                     <p className='pr-1'>Already Have An Account?  <Link className='text-primary' to='/login'>Please LogIn</Link></p>
 
                     <div className="divider">OR</div>

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useEffect, useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../../Shared/Loading/Loading';
@@ -21,8 +21,13 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(
+        auth
+    );
+
+    const [email, setEmail] = useState('');
+
     const onSubmit = data => {
-        console.log(data);
         signInWithEmailAndPassword(data.email, data.password)
     }
 
@@ -38,6 +43,18 @@ const Login = () => {
         navigate(from, { replace: true });
     }
 
+    // const resetPassword = async event => {
+    //   const email = event.target.email.value;
+    //     if(email){
+    //         await sendPasswordResetEmail(email);
+    //     alert('Sent mail');
+    //     }
+    //     console.log(email);
+    //     else{
+    //         toast('Please enter your email address');
+    //     }
+    // }
+
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -50,7 +67,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="Your Email" className="input input-bordered w-full max-w-xs"  {...register("email", {
+                            <input name='email'  onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Your Email" className="input input-bordered w-full max-w-xs"  {...register("email", {
                                 required: {
                                     value: true,
                                     message: 'Email is required'
@@ -93,6 +110,19 @@ const Login = () => {
                     </form>
                     <p className='pr-1'>New to Doctor's Portal?  <Link className='text-primary' to='/signup'>Create New Account</Link></p>
 
+                            {/* Forget Password */}
+
+                    <p className='mt-4 fs-5 forget-para'>Forget Password? <button to={'/signup'} className='text-primary border-0 text-decoration-none  bg-white login-button forget-para ' 
+
+                    onClick={async () => {
+                        await sendPasswordResetEmail(email);
+                        alert('Sent email');
+                    }}
+
+                    // onClick={resetPassword}
+                    
+                    >Reset Password</button></p>
+
                     <div className="divider">OR</div>
                     <button onClick={() => signInWithGoogle()} className="btn btn-outline">Continue With Google</button>
 
@@ -103,3 +133,4 @@ const Login = () => {
 };
 
 export default Login;
+
