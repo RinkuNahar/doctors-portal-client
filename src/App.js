@@ -17,6 +17,7 @@ import MyAppointment from './Pages/Dashboard/MyAppointment';
 import MyReview from './Pages/Dashboard/MyReview';
 import MyHistory from './Pages/Dashboard/MyHistory';
 import User from './Pages/Dashboard/User';
+import RequireAdmin from './Firebase/Login/RequireAdmin';
 
 function App() {
   return (
@@ -42,7 +43,11 @@ function App() {
           <Route index element={<MyAppointment></MyAppointment>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
           <Route path='history' element={<MyHistory></MyHistory>}></Route>
-          <Route path='users' element={<User></User>}></Route>
+
+          <Route path='users' element={<RequireAdmin>
+            <User></User>
+            </RequireAdmin>}></Route>
+            
         </Route>
 
         <Route path='/reviews' element={<Reviews></Reviews>}></Route>
