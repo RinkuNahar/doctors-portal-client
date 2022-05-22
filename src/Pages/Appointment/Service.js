@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Service = ({ service, setTreatment }) => {
+const Service = ({ service, setTreatment, treatment }) => {
 
-    const { name, slots } = service;
-
+    const { name, slots, price } = service;
+    console.log(service);
+    console.log(treatment);
     return (
         <div className="card lg:max-w-lg bg-base-100 shadow-xl mx-11">
             <div className="card-body">
@@ -13,8 +14,9 @@ const Service = ({ service, setTreatment }) => {
                 }
                 </p>
                 <p>{slots.length} {slots.length > 1 ? 'spaces' : 'space'}Available</p>
+                <p>Price: {price} Taka</p>
                 <div className="card-actions mx-auto">
-                    <label disabled={slots.length === 0} onClick={() => setTreatment(service)} htmlhtmlFor="booking-modal" className="btn modal-button btn-secondary text-white">Book Appointment</label>
+                    <label disabled={slots.length === 0} onClick={() => setTreatment(service)} htmlFor="booking-modal" className="btn modal-button btn-secondary text-white">Book Appointment</label>
                 </div>
             </div>
         </div>
